@@ -104,7 +104,7 @@ class _MapPageState extends State<MapPage> {
                 width: 6,
                 startCap: Cap.roundCap,
                 endCap: Cap.roundCap,
-                color: Colors.redAccent));
+                color: Color.fromARGB(255, 72, 173, 240)));
           }
         } else {
           route.add(LatLng(position!.latitude, position.longitude));

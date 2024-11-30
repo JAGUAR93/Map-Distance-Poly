@@ -117,109 +117,125 @@ class _HomeState extends State<Home> {
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(children: [
-          SizedBox(
-            height: 20,
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 3,
-            child: FloatingActionButton(
-              onPressed: () async {
-                Position? pos = await getPermission();
-                if (pos != null) {
-// When pop page in MapPage _addEntries(value) method works and
-// saving records to db and showing in HomePage
-                  Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MapPage()))
-                      .then((value) => _addEntries(value));
-                } else {
-                  showMyDialog();
-                }
-              },
-              backgroundColor: Colors.greenAccent,
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.add,
-                    size: 32,
-                  ),
-                  Text("Add New")
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Text(
-            "History ",
-            style: TextStyle(fontSize: 20),
-          ),
-          Expanded(
-            // height: 300,
-            child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: _cards.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Card(
-                    elevation: 5,
-                    child: Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5)),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  _cards[index].entry.date.toString(),
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      color: Theme.of(context).primaryColor,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                    "Duration : ${_cards[index].entry.duration}",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w600)),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                    "Distance (Km) : ${(_cards[index].entry.distance! / 1000).toStringAsFixed(2)}",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.grey,
-                                        fontWeight: FontWeight.w600)),
-                                Text(
-                                    "Speed (Km/Hours) : ${_cards[index].entry.speed!.toStringAsFixed(2)}",
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.grey,
-                                        fontWeight: FontWeight.w600)),
-                              ],
-                            )
-                          ],
+        child: Center(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 3,
+                  child: FloatingActionButton(
+                    onPressed: () async {
+                      Position? pos = await getPermission();
+                      if (pos != null) {
+                        // When pop page in MapPage _addEntries(value) method works and
+                        // saving records to db and showing in HomePage
+                        Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const MapPage()))
+                            .then((value) => _addEntries(value));
+                      } else {
+                        showMyDialog();
+                      }
+                    },
+                    backgroundColor: Colors.greenAccent,
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.add,
+                          size: 32,
                         ),
-                      ),
+                        Text("Add New")
+                      ],
                     ),
-                  );
-                }),
-          ),
-        ]),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "History :",
+                  style: TextStyle(fontSize: 20),
+                ),
+                _cards.isEmpty
+                    ? Text("No Previous Track Record!!!")
+                    : Expanded(
+                        // height: 300,
+                        child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            itemCount: _cards.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Card(
+                                elevation: 5,
+                                child: Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(5)),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              _cards[index]
+                                                  .entry
+                                                  .date
+                                                  .toString(),
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Text(
+                                                "Duration : ${_cards[index].entry.duration}",
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                        FontWeight.w600)),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                                "Distance (Km) : ${(_cards[index].entry.distance! / 1000).toStringAsFixed(2)}",
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    color: Colors.grey,
+                                                    fontWeight:
+                                                        FontWeight.w600)),
+                                            Text(
+                                                "Speed (Km/Hours) : ${_cards[index].entry.speed!.toStringAsFixed(2)}",
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    color: Colors.grey,
+                                                    fontWeight:
+                                                        FontWeight.w600)),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }),
+                      ),
+              ]),
+        ),
       ),
     );
   }
