@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
   late List<Entry> _data;
   List<EntryCard> _cards = [];
   late DB db;
-// initialize DB and fetch entries for showing items in list
+
   void initState() {
     db = DB();
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -50,9 +50,7 @@ class _HomeState extends State<Home> {
     _fetchEntries();
   }
 
-// This method checks is location permission granted and Location
-// services enable when press floating action button if return value
-// is not null, you Navigator.push works and you go MapPage
+
   Future<Position?> getPermission() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -131,8 +129,6 @@ class _HomeState extends State<Home> {
                     onPressed: () async {
                       Position? pos = await getPermission();
                       if (pos != null) {
-                        // When pop page in MapPage _addEntries(value) method works and
-                        // saving records to db and showing in HomePage
                         Navigator.push(
                                 context,
                                 MaterialPageRoute(

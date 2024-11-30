@@ -38,9 +38,9 @@ class _MapPageState extends State<MapPage> {
   void initState() {
     route.clear();
     polyline.clear();
-    dist = 0;
-    time = 0;
-    lastTime = 0;
+      dist = 0;
+     time = 0;
+      lastTime = 0;
     speed = 0;
     avgSpeed = 0;
     speedCounter = 0;
@@ -51,6 +51,7 @@ class _MapPageState extends State<MapPage> {
       getCurrentPosition();
     });
     stopWatchTimer.onExecute.add(StopWatchExecute.start);
+
     super.initState();
   }
 
