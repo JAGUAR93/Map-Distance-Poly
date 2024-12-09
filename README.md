@@ -12,7 +12,7 @@ flutter pub get
 flutter run
 
 # Download and use the app 
-Link: https://i.diawi.com/unwx5Q
+Link: https://www.upload-apk.com/vG0hdPskG243HKB
 # Contact Me
 If by any means the application encounters an error feel free to contact me @ +91 8588842361
 
